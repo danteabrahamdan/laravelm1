@@ -17,40 +17,40 @@
 			<div class="book-meta mt-5">
         <div class="meta-receta d-flex justify-content-between">
           <p>
-            <span class="font-weigh-bold text-danger">Escrito por:</span>
-            Autor del libro
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookuser') }}:</span>
+            usuario...
           </p>
 
           <p>
-            <span class="font-weigh-bold text-danger">Categoria:</span>
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookcat') }}:</span>
             categoria perteneciente
           </p>
 
           <p>
-            <span class="font-weigh-bold text-danger">Autor del libro:</span>
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookauthor') }}:</span>
             Autor del libro
           </p>
         </div>
 
         <div class="meta-receta d-flex justify-content-between">
           <p>
-            <span class="font-weigh-bold text-danger">ISBN:</span>
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookisbn') }}:</span>
             12345678910
           </p>
   
           <p>
-            <span class="font-weigh-bold text-danger">Fecha publicación:</span>
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookyear') }}:</span>
             2020/10/10
           </p>
   
           <p>
-            <span class="font-weigh-bold text-danger">Editorial:</span>
+            <span class="font-weigh-bold text-danger">{{ __('messages.bookpub') }}:</span>
             editorial ABCDEF
           </p>
         </div>
 
 				<div class="ingredientes">
-					<h4 class="my-3 text-danger">Resumen</h4>
+					<h4 class="my-3 text-danger">{{ __('messages.bookabs') }}</h4>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab suscipit accusamus aliquid qui eligendi dolorum quibusdam
            inventore iusto error, accusantium, voluptate totam blanditiis minus laborum, cum nam harum neque assumenda beatae 
            ipsa voluptatem. Exercitationem, repellat eum consequuntur ab quisquam deserunt quas esse earum eius libero minima, 
@@ -64,7 +64,7 @@
 
         <div class="text-center mt-5">
           <a href=""><i class="fa fa-heart heart"></i></a>
-          <p><small>35 personas lo tienen como favorito</small></p>
+          <p><small>35 {{ __('messages.bookfav') }}</small></p>
         </div>
 			</div>
 		</article>

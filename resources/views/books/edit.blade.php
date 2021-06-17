@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-  <h2 class="text-center mb-2">Editar: Libro N</h2>
+  <h2 class="text-center mb-2">{{ __('messages.bookedit') }} Libro N</h2>
   <div class="row justify-content-center mt-2">
     <div class="col-md-8">
       <form action="" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         <div class="form-group">
-          <label for="title">Titulo del libro</label>
+          <label for="title">{{ __('messages.bookname') }}</label>
           <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
           
           @error('title')
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group">
-          <label for="author">Autor del libro</label>
+          <label for="author">{{ __('messages.bookauthor') }}</label>
           <input type="text" name="author" id="author" class="form-control @error('author') is-invalid @enderror" value="{{ old('author') }}">
           
           @error('author')
@@ -33,8 +33,8 @@
         </div>
 
         <div class="form-group">
-          <label for="categoria">Categoria</label>
-          <select name="categoria" id="categoria" class="form-control @error('categoria') is-invalid @enderror">
+          <label for="category">{{ __('messages.bookcat') }}</label>
+          <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
             <option value="1">categoria 1</option>
             <option value="2">categoria 2</option>
             <option value="3">categoria 3</option>
@@ -42,7 +42,7 @@
             <option value="5">categoria 5</option>
           </select>
 
-          @error('categoria')
+          @error('category')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-          <label for="ingredientes">Resumen</label>
+          <label for="abstract">{{ __('messages.bookabs') }}</label>
           <input type="hidden" name="abstract" id="abstract" value="{{ old('abstract') }}">
           <trix-editor input="abstract" class="form-control @error('abstract') is-invalid @enderror"></trix-editor>
 
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-          <label for="isbn">ISBN</label>
+          <label for="isbn">{{ __('messages.bookisbn') }}</label>
           <input type="number" name="isbn" id="isbn" class="form-control @error('isbn') is-invalid @enderror" value="{{ old('isbn') }}">
           
           @error('isbn')
@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-group">
-          <label for="year">Año de publicación</label>
+          <label for="year">{{ __('messages.bookyear') }}</label>
           <input type="number" name="year" id="year" class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">
           
           @error('year')
@@ -84,7 +84,7 @@
         </div>
 
         <div class="form-group">
-          <label for="publisher">Nombre editorial</label>
+          <label for="publisher">{{ __('messages.bookpub') }}</label>
           <input type="text" name="publisher" id="publisher" class="form-control @error('publisher') is-invalid @enderror" value="{{ old('publisher') }}">
           
           @error('publisher')
@@ -95,11 +95,11 @@
         </div>
 
         <div class="form-group">
-          <label for="imagen">Imagen</label>
+          <label for="imagen">{{ __('messages.bookimg') }}</label>
           <input type="file" name="imagen" id="imagen" class="form-control @error('imagen') is-invalid @enderror">
 
 					<div class="mt-3">
-            <p>Imagen actual:</p>
+            <p>{{ __('messages.bookleg') }}</p>
             <img src="/images/book.jpg" style="width: 200px;">
           </div>
 
@@ -111,7 +111,7 @@
         </div>
 
         <div class="form-group">
-          <input type="submit" class="btn btn-primary" value="+ Agregar">
+          <input type="submit" class="btn btn-primary" value="+ {{ __('messages.bookupd') }}">
         </div>
       </form>
     </div>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<h2 class="text-center mb-4">Libros</h2>
+<h2 class="text-center mb-4">{{ __('messages.books') }}</h2>
 
 <div class="col-md-12 mx-auto bg-white p-2">
   <div class="row">
@@ -26,7 +26,7 @@
 
           <p class="mt-2">Autor nombre completo</p>
 
-          <a href="" class="btn btn-outline-success btn-block">Ver &#8594;</a>
+          <a href="" class="btn btn-outline-success btn-block">{{ __('messages.bookwatch') }} &#8594;</a>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
 
           <p class="mt-2">Autor nombre completo</p>
 
-          <a href="" class="btn btn-outline-success btn-block">Ver &#8594;</a>
+          <a href="" class="btn btn-outline-success btn-block">{{ __('messages.bookwatch') }} &#8594;</a>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
 
           <p class="mt-2">Autor nombre completo</p>
 
-          <a href="" class="btn btn-outline-success btn-block">Ver &#8594;</a>
+          <a href="" class="btn btn-outline-success btn-block">{{ __('messages.bookwatch') }} &#8594;</a>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
 
           <p class="mt-2">Autor nombre completo</p>
 
-          <a href="" class="btn btn-outline-success btn-block">Ver &#8594;</a>
+          <a href="" class="btn btn-outline-success btn-block">{{ __('messages.bookwatch') }} &#8594;</a>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@
 
           <p class="mt-2">Autor nombre completo</p>
 
-          <a href="" class="btn btn-outline-success btn-block">Ver &#8594;</a>
+          <a href="" class="btn btn-outline-success btn-block">{{ __('messages.bookwatch') }} &#8594;</a>
         </div>
       </div>
     </div>
