@@ -4,12 +4,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" integrity="sha512-CWdvnJD7uGtuypLLe5rLU3eUAkbzBR3Bm1SFPEaRfvXXI2v2H5Y0057EMTzNuGGRIznt8+128QIDQ8RqmHbAdg==" crossorigin="anonymous" />  
 @endsection
 
+@section('botones')
+    <a href="{{ route('books.index') }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
+@endsection
+
 @section('content')
   <h2 class="text-center mb-2">{{ __('messages.booknew') }}</h2>
   <div class="row justify-content-center mt-2">
     <div class="col-md-8">
       {{-- TODO --}}
-      <form action="" method="POST" enctype="multipart/form-data" novalidate>
+      <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         <div class="form-group">
           <label for="title">{{ __('messages.bookname') }}</label>

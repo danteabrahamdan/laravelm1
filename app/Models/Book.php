@@ -17,7 +17,7 @@ class Book extends Model {
 	}
 
 	// Relacion 1:1 inversa, al usuario al que pertenece este libro
-	public function author() {
+	public function user() {
 		return $this->belongsTo(User::class, 'user_id');
 	}
 }

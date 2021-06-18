@@ -4,62 +4,58 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
 @endsection
 
+@section('botones')
+  <a href="{{ route('books.index') }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
+@endsection
+
 @section('content')
 <div class="row justify-content-center">
   <div class="col-md-10">
 		<article class="">
-			<h3 class="text-center mb-4">titulo libro</h3>
+			<h3 class="text-center mb-4">{{ $book->title }}</h3>
 
 			<div class="text-center">
-				<img src="/images/book.jpg" alt="imagen" class="w-50">
+				<img src="/storage/{{ $book->img_url }}" alt="imagen" class="w-50">
 			</div>
 
 			<div class="book-meta mt-5">
         <div class="meta-receta d-flex justify-content-between">
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookuser') }}:</span>
-            usuario...
+            {{ $book->user->name }}
           </p>
 
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookcat') }}:</span>
-            categoria perteneciente
+            {{ $book->category->category_name }}
           </p>
 
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookauthor') }}:</span>
-            Autor del libro
+            {{ $book->author }}
           </p>
         </div>
 
         <div class="meta-receta d-flex justify-content-between">
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookisbn') }}:</span>
-            12345678910
+            {{ $book->isbn }}
           </p>
   
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookyear') }}:</span>
-            2020/10/10
+            {{ $book->year_of_publication }}
           </p>
   
           <p>
             <span class="font-weigh-bold text-danger">{{ __('messages.bookpub') }}:</span>
-            editorial ABCDEF
+            {{ $book->publisher_name }}
           </p>
         </div>
 
 				<div class="ingredientes">
 					<h4 class="my-3 text-danger">{{ __('messages.bookabs') }}</h4>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab suscipit accusamus aliquid qui eligendi dolorum quibusdam
-           inventore iusto error, accusantium, voluptate totam blanditiis minus laborum, cum nam harum neque assumenda beatae 
-           ipsa voluptatem. Exercitationem, repellat eum consequuntur ab quisquam deserunt quas esse earum eius libero minima, 
-           perferendis molestias molestiae aperiam?. <br>
-
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab suscipit accusamus aliquid qui eligendi dolorum quibusdam
-           inventore iusto error, accusantium, voluptate totam blanditiis minus laborum, cum nam harum neque assumenda beatae 
-           ipsa voluptatem. Exercitationem, repellat eum consequuntur ab quisquam deserunt quas esse earum eius libero minima, 
-           perferendis molestias molestiae aperiam?.
+          {!! $book->abstract !!}
 				</div>
 
         <div class="text-center mt-5">
