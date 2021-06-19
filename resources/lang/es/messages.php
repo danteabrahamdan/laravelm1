@@ -38,5 +38,7 @@ return [
   'bookleg' => 'Imagen actual:',
   // Book show
   'bookuser' => 'Subido por',
-  'bookfav' => 'personas lo tienen como favorito'
+  'bookfav' => 'personas lo tienen como favorito',
+  'bookice' => 'Editar libro',
+  'bookict' => 'Borrar libro'
 ];

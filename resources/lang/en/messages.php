@@ -38,5 +38,7 @@ return [
   'bookleg' => 'Current image:',
   // Book show
   'bookuser' => 'Uploaded by',
-  'bookfav' => 'people like it'
+  'bookfav' => 'people like it',
+  'bookice' => 'Edit book',
+  'bookict' => 'Delete book'
 ];

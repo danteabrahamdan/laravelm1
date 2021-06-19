@@ -58,9 +58,33 @@
           {!! $book->abstract !!}
 				</div>
 
-        <div class="text-center mt-5">
-          <a href=""><i class="fa fa-heart heart"></i></a>
-          <p><small>35 {{ __('messages.bookfav') }}</small></p>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="text-center mt-5">
+              <a href=""><i class="fa fa-heart heart"></i></a>
+              <p><small>35 {{ __('messages.bookfav') }}</small></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="text-center mt-5">
+              <a href="{{ route('books.edit', ['book' =>$book->id ]) }}"><i class="fa fa-edit edit"></i></a>
+              <p><small>{{ __('messages.bookice') }}</small></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="text-center mt-5">
+              <form action="{{ route('books.destroy', ['book' =>$book->id ]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-primary">
+                  <i class="fa fa-trash trash"></i>
+                </button>
+                <p><small>{{ __('messages.bookict') }}</small></p>
+              </form>
+            </div>
+          </div>
         </div>
 			</div>
 		</article>

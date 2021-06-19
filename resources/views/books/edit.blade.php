@@ -5,18 +5,19 @@
 @endsection
 
 @section('botones')
-    <a href="{{ route('books.index') }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
+    <a href="{{ url()->previous() }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
 @endsection
 
 @section('content')
-  <h2 class="text-center mb-2">{{ __('messages.bookedit') }} Libro N</h2>
+  <h2 class="text-center mb-2">{{ __('messages.bookedit') }} {{ $book->title }}</h2>
   <div class="row justify-content-center mt-2">
     <div class="col-md-8">
-      <form action="" method="POST" enctype="multipart/form-data" novalidate>
+      <form action="{{ route('books.update', ['book' => $book->id ]) }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
+        @method('PUT')
         <div class="form-group">
           <label for="title">{{ __('messages.bookname') }}</label>
-          <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
+          <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ $book->title }}">
           
           @error('title')
             <span class="invalid-feedback" role="alert">
@@ -27,7 +28,7 @@
 
         <div class="form-group">
           <label for="author">{{ __('messages.bookauthor') }}</label>
-          <input type="text" name="author" id="author" class="form-control @error('author') is-invalid @enderror" value="{{ old('author') }}">
+          <input type="text" name="author" id="author" class="form-control @error('author') is-invalid @enderror" value="{{ $book->author }}">
           
           @error('author')
             <span class="invalid-feedback" role="alert">
@@ -39,11 +40,9 @@
         <div class="form-group">
           <label for="category">{{ __('messages.bookcat') }}</label>
           <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
-            <option value="1">categoria 1</option>
-            <option value="2">categoria 2</option>
-            <option value="3">categoria 3</option>
-            <option value="4">categoria 4</option>
-            <option value="5">categoria 5</option>
+            @foreach ($categorias as $categoria)
+              <option value="{{ $categoria->id }}" {{ $book->category_id == $categoria->id ? 'selected' : '' }}>{{ $categoria->category_name }}</option>
+            @endforeach
           </select>
 
           @error('category')
@@ -55,7 +54,7 @@
 
         <div class="form-group">
           <label for="abstract">{{ __('messages.bookabs') }}</label>
-          <input type="hidden" name="abstract" id="abstract" value="{{ old('abstract') }}">
+          <input type="hidden" name="abstract" id="abstract" value="{{ $book->abstract }}">
           <trix-editor input="abstract" class="form-control @error('abstract') is-invalid @enderror"></trix-editor>
 
           @error('abstract')
@@ -67,7 +66,7 @@
 
         <div class="form-group">
           <label for="isbn">{{ __('messages.bookisbn') }}</label>
-          <input type="number" name="isbn" id="isbn" class="form-control @error('isbn') is-invalid @enderror" value="{{ old('isbn') }}">
+          <input type="number" name="isbn" id="isbn" class="form-control @error('isbn') is-invalid @enderror" value="{{ $book->isbn }}">
           
           @error('isbn')
             <span class="invalid-feedback" role="alert">
@@ -78,7 +77,7 @@
 
         <div class="form-group">
           <label for="year">{{ __('messages.bookyear') }}</label>
-          <input type="number" name="year" id="year" class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">
+          <input type="number" name="year" id="year" class="form-control @error('year') is-invalid @enderror" value="{{ $book->year_of_publication }}">
           
           @error('year')
             <span class="invalid-feedback" role="alert">
@@ -89,7 +88,7 @@
 
         <div class="form-group">
           <label for="publisher">{{ __('messages.bookpub') }}</label>
-          <input type="text" name="publisher" id="publisher" class="form-control @error('publisher') is-invalid @enderror" value="{{ old('publisher') }}">
+          <input type="text" name="publisher" id="publisher" class="form-control @error('publisher') is-invalid @enderror" value="{{ $book->publisher_name }}">
           
           @error('publisher')
             <span class="invalid-feedback" role="alert">
@@ -104,7 +103,7 @@
 
 					<div class="mt-3">
             <p>{{ __('messages.bookleg') }}</p>
-            <img src="/images/book.jpg" style="width: 200px;">
+            <img src="/storage/{{ $book->img_url }}" style="width: 200px;">
           </div>
 
           @error('imagen')

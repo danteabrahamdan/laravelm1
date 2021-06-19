@@ -10,7 +10,7 @@ class BookController extends Controller {
 	
 	public function index() {
 		$idUser = auth()->user()->id;
-		$books = Book::where('user_id', $idUser)->paginate(5);
+		$books = Book::where('user_id', $idUser)->paginate(8);
 		return view('books.index')->with('books', $books);
 	}
 
@@ -51,18 +51,41 @@ class BookController extends Controller {
 		return view('books.show', compact('book'));
 	}
 
-	public function edit($id)
-	{
-		return view('books.edit');
+	public function edit(Book $book) {
+		$categorias = CategoryBook::all(['id', 'category_name']);
+		return view('books.edit')->with('categorias', $categorias)->with('book', $book);
 	}
 
-	public function update(Request $request, $id)
-	{
-		//
+	public function update(Request $request, Book $book) {
+		$data = request()->validate([
+			'title' => 'required|min:6',
+			'author' => 'required',
+			'category' => 'required',
+			'abstract' => 'required',
+			'isbn' => 'required|integer',
+			'year' => 'required|integer',
+			'publisher' => 'required'
+		]);
+
+		$book->title = $data['title'];
+		$book->author = $data['author'];
+		$book->category_id = $data['category'];
+		$book->abstract = $data['abstract'];
+		$book->isbn = $data['isbn'];
+		$book->year_of_publication = $data['year'];
+		$book->publisher_name = $data['publisher'];
+
+		if(request('imagen')) {
+			$urlImagen = $request['imagen']->store('upload-books', 'public');
+			$book->img_url = $urlImagen;
+		}
+
+		$book->save();
+		return redirect()->action([BookController::class, 'index']);
 	}
 
-	public function destroy($id)
-	{
-		//
+	public function destroy(Book $book) {
+		$book->delete();
+		return redirect()->action([BookController::class, 'index']);
 	}
 }

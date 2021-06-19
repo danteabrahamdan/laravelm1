@@ -39,6 +39,7 @@
   </div>
 
   <div class="mt-4 justify-content-center d-flex">
+    {{ $books->links("pagination::bootstrap-4") }}
   </div>
 </div>
 @endsection
