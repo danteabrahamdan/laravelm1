@@ -40,5 +40,8 @@ return [
   'bookuser' => 'Uploaded by',
   'bookfav' => 'people like it',
   'bookice' => 'Edit book',
-  'bookict' => 'Delete book'
+  'bookict' => 'Delete book',
+  // Profile
+  'wprof' => 'Profile',
+  'uprof' => 'Edit profile'
 ];

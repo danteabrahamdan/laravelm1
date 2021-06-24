@@ -14,6 +14,14 @@ class User extends Authenticatable {
 	protected $hidden = ['password', 'remember_token'];
 	protected $casts = ['email_verified_at' => 'datetime'];
 
+	// Evento crear un perfil al momento de registrar un nuevo usuario
+	protected static function boot() {
+		parent::boot();
+		static::created(function ($user) {
+			$user->profile()->create();
+		});
+	}
+
 	// Relación 1:N directa, donde un usuario tiene muchos libros
 	public function books() {
 		return $this->hasMany(Book::class);

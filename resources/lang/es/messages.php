@@ -40,5 +40,8 @@ return [
   'bookuser' => 'Subido por',
   'bookfav' => 'personas lo tienen como favorito',
   'bookice' => 'Editar libro',
-  'bookict' => 'Borrar libro'
+  'bookict' => 'Borrar libro',
+  // Profile
+  'wprof' => 'Ver perfil',
+  'uprof' => 'Editar perfil'
 ];
