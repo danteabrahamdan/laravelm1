@@ -12,11 +12,12 @@
   <h2 class="text-center mb-2">Editar mi perfil</h2>
   <div class="row justify-content-center mt-2">
     <div class="col-md-8">
-      <form action="" method="POST" enctype="multipart/form-data" novalidate>
+      <form action="{{ route('profiles.update', ['profile' => $profile->id ]) }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
+        @method('PUT')
         <div class="form-group">
           <label for="name">Tu nombre</label>
-          <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="">
+          <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $profile->user->name }}">
           
           @error('name')
             <span class="invalid-feedback" role="alert">
@@ -27,7 +28,7 @@
 
         <div class="form-group">
           <label for="url">Tu sitio web:</label>
-          <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror" value="">
+          <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror" value="{{ $profile->user->url }}">
           
           @error('url')
             <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
 
         <div class="form-group">
           <label for="biography">Tu biografia:</label>
-          <input type="hidden" name="biography" id="biography" value="">
+          <input type="hidden" name="biography" id="biography" value="{{ $profile->biography }}">
           <trix-editor input="biography" class="form-control @error('biografia') is-invalid @enderror"></trix-editor>
 
           @error('biography')
@@ -52,7 +53,12 @@
           <label for="imagen">Imagen</label>
           <input type="file" name="imagen" id="imagen" class="form-control @error('imagen') is-invalid @enderror">
 
-          <div class="mt-3"><p>Imagen actual:</p><img src="/storage/..." style="width: 300px;"></div>
+          @if($profile->image_url)
+            <div class="mt-3">
+              <p>Imagen actual:</p>
+              <img src="/storage/{{ $profile->image_url }}" style="width: 300px;">
+            </div>
+          @endif
 
           @error('imagen')
             <span class="invalid-feedback" role="alert">

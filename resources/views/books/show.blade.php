@@ -5,7 +5,7 @@
 @endsection
 
 @section('botones')
-  <a href="{{ route('books.index') }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
+  <a href="{{ url()->previous() }}" class="btn btn-outline-primary">&#8592; {{ __('messages.bookback') }}</a>
 @endsection
 
 @section('content')
@@ -58,34 +58,32 @@
           {!! $book->abstract !!}
 				</div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <div class="text-center mt-5">
-              <a href=""><i class="fa fa-heart heart"></i></a>
-              <p><small>35 {{ __('messages.bookfav') }}</small></p>
+        @if(auth()->user())
+          @if($book->user_id == auth()->user()->id)
+            <div class="row">
+              <div class="col-md-4">
+                <div class="text-center mt-5">
+                  <a href=""><i class="fa fa-heart heart"></i></a>
+                  <p><small>35 {{ __('messages.bookfav') }}</small></p>
+                </div>
+              </div>
+    
+              <div class="col-md-4">
+                <div class="text-center mt-5">
+                  <a href="{{ route('books.edit', ['book' =>$book->id ]) }}"><i class="fa fa-edit edit"></i></a>
+                  <p><small>{{ __('messages.bookice') }}</small></p>
+                </div>
+              </div>
+    
+              <div class="col-md-4">
+                <div class="text-center mt-5">
+                  <eliminar-libro book-id={{ $book->id }}></eliminar-libro>
+                  <p><small>{{ __('messages.bookict') }}</small></p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="text-center mt-5">
-              <a href="{{ route('books.edit', ['book' =>$book->id ]) }}"><i class="fa fa-edit edit"></i></a>
-              <p><small>{{ __('messages.bookice') }}</small></p>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="text-center mt-5">
-              <form action="{{ route('books.destroy', ['book' =>$book->id ]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-primary">
-                  <i class="fa fa-trash trash"></i>
-                </button>
-                <p><small>{{ __('messages.bookict') }}</small></p>
-              </form>
-            </div>
-          </div>
-        </div>
+          @endif
+        @endif
 			</div>
 		</article>
 	</div>

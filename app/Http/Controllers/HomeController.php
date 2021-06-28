@@ -2,27 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\CategoryBook;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
-    }
+class HomeController extends Controller {
+	
+	public function index() {
+		$newBooks = Book::latest()->take(5)->get();
+		$categorias = CategoryBook::all();
+		foreach($categorias as $categoria) {
+			$books[$categoria->category_name][] = Book::where('category_id', $categoria->id)->take(3)->get();
+		}
+		return view('home')->with('nuevos', $newBooks)->with('books', $books);
+	}
 }

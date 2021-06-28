@@ -22,7 +22,7 @@
             <h5 class="card-title">{{ $book->title }}</h5>
 
             <div class="meta-receta d-flex justify-content-between">
-              {{ $book->updated_at }}
+              <fecha-libro fecha="{{ $book->created_at }}"></fecha-libro>
 
               <small class="text-primary fecha">
                 10 me gusta

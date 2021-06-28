@@ -62,6 +62,10 @@
                                         {{ __('messages.ini') }}
                                     </a>
 
+                                    <a href="{{ route('books.index') }}" class="dropdown-item">
+                                        {{ __('messages.books') }}
+                                    </a>
+
                                     <a href="{{ route('profiles.show', ['profile' => auth()->user()->id]) }}" class="dropdown-item">
                                         {{ __('messages.wprof') }}
                                     </a>
@@ -86,6 +90,8 @@
                 </div>
             </div>
         </nav>
+
+        @yield('main')
 
         <div class="container">
             <div class="row">

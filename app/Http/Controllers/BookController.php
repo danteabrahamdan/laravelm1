@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\CategoryBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class BookController extends Controller {
+
+	public function __construct() {
+		$this->middleware('auth', ['except' => 'show']);
+	}
 	
 	public function index() {
 		$idUser = auth()->user()->id;
@@ -25,7 +30,7 @@ class BookController extends Controller {
 			'author' => 'required',
 			'category' => 'required',
 			'abstract' => 'required',
-			'isbn' => 'required|integer',
+			'isbn' => 'required|integer|unique:books',
 			'year' => 'required|integer',
 			'publisher' => 'required',
 			'imagen' => 'required|image'
@@ -52,11 +57,15 @@ class BookController extends Controller {
 	}
 
 	public function edit(Book $book) {
+		$this->authorize('view', $book);
+
 		$categorias = CategoryBook::all(['id', 'category_name']);
 		return view('books.edit')->with('categorias', $categorias)->with('book', $book);
 	}
 
 	public function update(Request $request, Book $book) {
+		$this->authorize('update', $book);
+
 		$data = request()->validate([
 			'title' => 'required|min:6',
 			'author' => 'required',
@@ -76,6 +85,10 @@ class BookController extends Controller {
 		$book->publisher_name = $data['publisher'];
 
 		if(request('imagen')) {
+			if($book->img_url) {
+				Storage::delete('public/'.$book->img_url);
+			}
+
 			$urlImagen = $request['imagen']->store('upload-books', 'public');
 			$book->img_url = $urlImagen;
 		}
@@ -85,6 +98,10 @@ class BookController extends Controller {
 	}
 
 	public function destroy(Book $book) {
+		$this->authorize('delete', $book);
+
+		Storage::delete('public/'.$book->img_url);
+		
 		$book->delete();
 		return redirect()->action([BookController::class, 'index']);
 	}

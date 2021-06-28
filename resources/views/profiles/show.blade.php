@@ -29,7 +29,7 @@
 					<div class="row mx-auto bg white p-4">
             @if(count($books) > 0)
 							@foreach($books as $book)
-								<div class="col-md-4 mb-4">
+								<div class="col-md-3 mb-4">
 									<div class="card">
 										<img src="/storage/{{ $book->img_url }}" alt="imagen libro" class="card-img-top">
 										<div class="card-body">
